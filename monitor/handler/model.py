@@ -81,6 +81,7 @@ class Article(Base):
             session.commit()
         except SQLAlchemyError:
             session.rollback()
+            print articles[0].url
             raise(SQLAlchemyError)
         finally:
             session.close()
