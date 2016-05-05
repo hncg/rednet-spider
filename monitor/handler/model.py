@@ -3,6 +3,7 @@ from sqlalchemy import Column, String, Integer, DateTime, Text, func
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.exc import SQLAlchemyError
 from handler import DBSession
+from utils import log
 
 Base = declarative_base()
 
@@ -81,7 +82,7 @@ class Article(Base):
             session.commit()
         except SQLAlchemyError:
             session.rollback()
-            print articles[0].url
+            log.log(message=articles[0].url)
             raise(SQLAlchemyError)
         finally:
             session.close()
