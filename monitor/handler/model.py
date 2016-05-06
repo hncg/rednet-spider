@@ -83,6 +83,6 @@ class Article(Base):
         except SQLAlchemyError:
             session.rollback()
             log.log(message=articles[0].url)
-            raise(SQLAlchemyError)
+            # raise(SQLAlchemyError)
         finally:
             session.close()
