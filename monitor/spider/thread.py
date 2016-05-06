@@ -23,6 +23,7 @@ class MyThread(threading.Thread):
 	def run(self):
 		print self.city.name, "线程开始抓取"
 		for i in xrange(1, 101):
+			print "抓取", self.city.name, i, "页"
 			articles = []
 			url = host + url_args.format(fid=str(self.city.fid), page=str(i))
 			home_page = Base.get_home(url)
@@ -36,7 +37,7 @@ class MyThread(threading.Thread):
 					return
 				else:
 					if tid not in self.tids:
-						print "抓取", self.city.name, i, "页", "帖子", article_info['title']
+						# print "抓取", self.city.name, i, "页", "帖子", article_info['title']
 						content = Base.get_content(article_info['url'])
 						content = content[:10240 * 2]
 						articles.append(
