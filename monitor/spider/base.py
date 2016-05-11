@@ -33,27 +33,28 @@ class Base(object):
                 _type = "normal"
             else:
                 continue
-            title = re.search(u'class="xst" >.+?</a', table)
-            title = re.compile(u'class="xst" >|</a').sub(u'', title.group())
+            try:
+                title = re.search(u'class="xst" >.+?</a', table)
+                title = re.compile(u'lass="xst" >|</a').sub(u'', title.group())
+                author = re.search(u'c="1">.+?</a', table)
+                author = re.compile(u'c="1">|</a').sub(u'', author.group())
 
-            author = re.search(u'c="1">.+?</a', table)
-            author = re.compile(u'c="1">|</a').sub(u'', author.group())
+                time_at = re.search(u'\d+-\d+-\d+ \d+:\d+', table).group()
 
-            time_at = re.search(u'\d+-\d+-\d+ \d+:\d+', table).group()
+                reply_number = re.search(u'class="xi2">\d+?</a', table)
+                reply_number = re.compile(u'class="xi2">|</a').sub(u'', reply_number.group()) # noqa
 
-            reply_number = re.search(u'class="xi2">\d+?</a', table)
-            reply_number = re.compile(u'class="xi2">|</a').sub(u'', reply_number.group()) # noqa
+                read_number = re.search(u'<em>\d+?</em', table)
+                read_number = re.compile(u'<em>|</em').sub(u'', read_number.group()) # noqa
 
-            read_number = re.search(u'<em>\d+?</em', table)
-            read_number = re.compile(u'<em>|</em').sub(u'', read_number.group()) # noqa
+                tid = re.search(u'tid=\d+', table)
+                tid = re.compile(u'tid=').sub(u'', tid.group())
 
-            tid = re.search(u'tid=\d+', table)
-            tid = re.compile(u'tid=').sub(u'', tid.group())
-
-            url = re.search(u'http://.+?"', table).group()[:-1]
-            url = re.compile(u'amp;').sub(u'', url)
-            url = len(url) > 256 and url[:255] or url
-
+                url = re.search(u'http://.+?"', table).group()[:-1]
+                url = re.compile(u'amp;').sub(u'', url)
+                url = len(url) > 256 and url[:255] or url
+            except:
+                continue
             article_infos.append({
                 "title": title,
                 "author": author,

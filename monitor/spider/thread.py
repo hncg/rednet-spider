@@ -4,9 +4,6 @@ from .base import Base
 from utils import do_time
 from handler.model import Article
 
-cityIdMap = {
-	"长沙": 1
-}
 host = "http://bbs.rednet.cn/forum.php"
 url_args = "?mod=forumdisplay&fid={fid}&filter=author&orderby=dateline&page={page}" # noqa
 
