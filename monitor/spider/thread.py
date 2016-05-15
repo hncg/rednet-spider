@@ -19,7 +19,7 @@ class MyThread(threading.Thread):
 
 	def run(self):
 		print self.city.name, "线程开始抓取"
-		for i in xrange(1, 101):
+		for i in xrange(1, 2):
 			print "抓取", self.city.name, i, "页"
 			articles = []
 			url = host + url_args.format(fid=str(self.city.fid), page=str(i))
@@ -51,4 +51,5 @@ class MyThread(threading.Thread):
 								url=article_info['url'],
 							))
 			Article.add_all(articles)
+
 		print self.city.name, "结束"
