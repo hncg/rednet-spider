@@ -18,7 +18,6 @@ if __name__ == '__main__':
     articles = Article.mget_latest_time_at()
     latest_time_at_map = {articles[1]: articles[0] for
                           articles in articles}
-    latest_time_at_map = {}
     for city in citys:
         break
         if threading.activeCount() > thread_limit:

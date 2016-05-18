@@ -85,7 +85,10 @@ class Mood(object):
                             city_id=city_id,
                             time_at=time_at,
                             word=word_times[0],
-                            times=word_times[1]
+                            times=word_times[1],
+                            year=time_at[0:4],
+                            month=time_at[5:7],
+                            day=time_at[8:10],
                         )
                     )
             DBHotWords.add_all(hot_words)
@@ -126,6 +129,9 @@ class Mood(object):
                         evil=evil,
                         surprise=surprise,
                         cps=cps,
+                        year=time_at[0:4],
+                        month=time_at[5:7],
+                        day=time_at[8:10],
                     )
                 )
         DbMood.add_all(moods)

@@ -115,6 +115,9 @@ class Mood(Base):
     evil = Column(Integer)
     surprise = Column(Integer)
     cps = Column(Float)
+    year = Column(Integer)
+    month = Column(Integer)
+    day = Column(Integer)
 
     @classmethod
     def mget_by_city_id(cls, city_id):
@@ -169,6 +172,9 @@ class HotWords(Base):
     word = Column(Integer)
     times = Column(Integer)
     city_id = Column(Integer, index=True)
+    year = Column(Integer)
+    month = Column(Integer)
+    day = Column(Integer)
 
     @classmethod
     def get_by_city_id_and_time_and_word(cls, city_id, time_at, word):
