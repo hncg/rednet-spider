@@ -10,7 +10,7 @@ from handler.model import (
 )
 
 thread_limit = 4    # 最大爬虫线程数
-thread_limit_time = 60 * 15    # 爬虫限制等待时间等待抓取
+thread_limit_time = 60 * 1    # 爬虫限制等待时间等待抓取
 
 if __name__ == '__main__':
     key_mood_map = cg_core.get_key_mood_map("../doc/", "feel.xlsx")
@@ -19,7 +19,6 @@ if __name__ == '__main__':
     latest_time_at_map = {articles[1]: articles[0] for
                           articles in articles}
     for city in citys:
-        break
         if threading.activeCount() > thread_limit:
             print "最大爬虫线程数只能为{}个, 线程休眠{}秒". \
                 format(thread_limit, thread_limit_time)
